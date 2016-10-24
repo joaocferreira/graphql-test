@@ -4,14 +4,29 @@ var express = require('express');
 var graphqlHTTP = require('express-graphql');
 var graphql = require('graphql');
 var underscore = require('underscore');
-var data = require('./data')
+var dataPokemon = require('./data/pokemon');
+var dataMoves = require('./data/moves');
 
 var GraphQLSchema = graphql.GraphQLSchema;
 var GraphQLObjectType = graphql.GraphQLObjectType;
 var GraphQLString = graphql.GraphQLString;
 var GraphQLInt = graphql.GraphQLInt;
 var GraphQLList = graphql.GraphQLList;
+var GraphQLID = graphql.GraphQLID;
 
+var moveType = new GraphQLObjectType({
+	name: "Moves",
+	fields: function () {
+		return {
+			id: {
+				type: GraphQLID
+			},
+			name: {
+				type: GraphQLString
+			}
+		}
+	}
+});
 
 var pokemonType = new GraphQLObjectType({
 	name: "Pokemon",
@@ -33,7 +48,10 @@ var pokemonType = new GraphQLObjectType({
 				type: GraphQLString
 			},
 			moves: {
-				type: new GraphQLList(GraphQLString)
+				type: new GraphQLList(moveType),
+				resolve: function (parent) {
+					return findMoves(parent.moves)
+				}
 			},
 		}
 	}
@@ -50,7 +68,7 @@ var queryType = new GraphQLObjectType({
 				}
 			},
 			pokemonKey: {
-				type:  new GraphQLList(pokemonType),
+				type: new GraphQLList(pokemonType),
 				args: {
 					key: {
 						type: GraphQLString
@@ -70,8 +88,8 @@ var queryType = new GraphQLObjectType({
 						type: GraphQLInt
 					}
 				},
-				resolve: function(_, args) {
-					return	findPokemon(args.id)
+				resolve: function (_, args) {
+					return findPokemon(args.id)
 				}
 			}
 		}
@@ -79,18 +97,25 @@ var queryType = new GraphQLObjectType({
 });
 
 function getPokemonByKey(key, value) {
-	var pokemon = underscore.filter(data, function(pokemon) {
+	var pokemon = underscore.filter(dataPokemon, function (pokemon) {
 		return String(pokemon[key]) === value;
 	});
 	return pokemon;
 };
 
 function getThemAll() {
-	return data;
+	return dataPokemon;
 };
 
 function findPokemon(id) {
-	return data[id];
+	return dataPokemon[id];
+};
+
+function findMoves(moves, args) {
+	var listMoves = moves.map(function (id) {
+		return dataMoves[id]
+	});
+	return listMoves;
 };
 
 var schema = new GraphQLSchema({

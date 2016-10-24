@@ -3,54 +3,35 @@ var pokemon = [{
 		"attack": 90,
 		"defense": 55,
 		"type": "electric",
-		"moves": [
-         "thundershock",
-         "thunderbolt"
-      ],
+		"moves": [1,2],
 		"id": 26
    }, {
 		"name": "Pidgeot",
 		"attack": 80,
 		"defense": 75,
 		"type": "normal",
-		"moves": [
-         "tackle",
-         "gust",
-         "wing attack"
-      ],
+		"moves": [3,4,5],
 		"id": 18
    }, {
 		"name": "Charizard",
 		"attack": 84,
 		"defense": 78,
 		"type": "fire",
-		"moves": [
-         "flamethrower",
-         "wing attack",
-         "slash",
-         "metal claw"
-      ],
+		"moves": [6,5,7,8],
 		"id": 6
    }, {
 		"name": "Nidoking",
 		"attack": 92,
 		"defense": 77,
 		"type": "poison",
-		"moves": [
-         "peck",
-         "poison sting",
-         "megahorn"
-      ],
+		"moves": [9,11,10],
 		"id": 34
 	 }, {
       "name":"Arcanine",
       "attack":110,
       "defense":80,
       "type":"fire",
-      "moves":[
-         "bite",
-         "ember"
-      ],
+      "moves":[12,13],
       "id":59
    }
 ];
