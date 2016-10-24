@@ -1,46 +1,58 @@
-var goldbergs = {
- 1: {
-   character: "Beverly Goldberg",
-   actor: "Wendi McLendon-Covey",
-   role: "matriarch",
-   traits: "embarrassing, overprotective",
-   id: 1
- },
- 2: {
-   character: "Murray Goldberg",
-   actor: "Jeff Garlin",
-   role: "patriarch",
-   traits: "gruff, lazy",
-   id: 2
- },
- 3: {
-   character: "Erica Goldberg",
-   actor: "Hayley Orrantia",
-   role: "oldest child",
-   traits: "rebellious, nonchalant",
-   id: 3
- },
- 4: {
-   character: "Barry Goldberg",
-   actor: "Troy Gentile",
-   role: "middle child",
-   traits: "dim-witted, untalented",
-   id: 4
- },
- 5: {
-   character: "Adam Goldberg",
-   actor: "Sean Giambrone",
-   role: "youngest child",
-   traits: "geeky, pop-culture obsessed",
-   id: 5
- },
- 6: {
-   character: "Albert 'Pops' Solomon",
-   actor: "George Segal",
-   role: "grandfather",
-   traits: "goofy, laid back",
-   id: 6
- }
-};
+var pokemon = [{
+		"name": "Raichu",
+		"attack": 90,
+		"defense": 55,
+		"type": "electric",
+		"moves": [
+         "thundershock",
+         "thunderbolt"
+      ],
+		"id": 26
+   }, {
+		"name": "Pidgeot",
+		"attack": 80,
+		"defense": 75,
+		"type": "normal",
+		"moves": [
+         "tackle",
+         "gust",
+         "wing attack"
+      ],
+		"id": 18
+   }, {
+		"name": "Charizard",
+		"attack": 84,
+		"defense": 78,
+		"type": "fire",
+		"moves": [
+         "flamethrower",
+         "wing attack",
+         "slash",
+         "metal claw"
+      ],
+		"id": 6
+   }, {
+		"name": "Nidoking",
+		"attack": 92,
+		"defense": 77,
+		"type": "poison",
+		"moves": [
+         "peck",
+         "poison sting",
+         "megahorn"
+      ],
+		"id": 34
+	 }, {
+      "name":"Arcanine",
+      "attack":110,
+      "defense":80,
+      "type":"fire",
+      "moves":[
+         "bite",
+         "ember"
+      ],
+      "id":59
+   }
+];
 
-module.exports = goldbergs;
+module.exports = pokemon;
