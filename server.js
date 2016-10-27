@@ -6,6 +6,7 @@ var graphql = require('graphql');
 var underscore = require('underscore');
 var dataPokemon = require('./data/pokemon');
 var dataMoves = require('./data/moves');
+var cors = require('cors');
 
 var GraphQLSchema = graphql.GraphQLSchema;
 var GraphQLObjectType = graphql.GraphQLObjectType;
@@ -13,6 +14,8 @@ var GraphQLString = graphql.GraphQLString;
 var GraphQLInt = graphql.GraphQLInt;
 var GraphQLList = graphql.GraphQLList;
 var GraphQLID = graphql.GraphQLID;
+
+
 
 var moveType = new GraphQLObjectType({
 	name: "Moves",
@@ -57,8 +60,19 @@ var pokemonType = new GraphQLObjectType({
 	}
 });
 
+var pokemonListType = new GraphQLObjectType({
+	name: "PokemonList",
+	fields: function () {
+		return {
+			pokemon: {
+				type: new GraphQLList(pokemonType)
+			}
+		}
+	}
+});
+
 var queryType = new GraphQLObjectType({
-	name: "query",
+	name: "Query",
 	fields: function () {
 		return {
 			pokemonAll: {
@@ -124,7 +138,9 @@ var schema = new GraphQLSchema({
 
 var graphQLServer = express();
 
-graphQLServer.use('/', graphqlHTTP({
+graphQLServer.use(cors());
+
+graphQLServer.use('/graphql', graphqlHTTP({
 	schema: schema,
 	graphiql: true
 }));
